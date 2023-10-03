@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="assets/css/style.css"> 
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Currency Exchange</title>
 </head>
 
@@ -23,71 +23,40 @@
     </header>
 
     <!-- Main Section -->
-    <section class="section">
-        <div class="container">
+    <section class="section m-1 p-2">
+        <div class="container is-fluid">
             <div class="columns">
                 <!-- Left Column (Three Quarters) -->
                 <div class="column is-three-quarters">
                     <!-- Your left content goes here -->
-                    Auto complete currency
+                    <div class="level field">
+                        Currency conversion rate:
+                        <!-- <form autocomplete="off"> -->
+                        <!-- <div class="field autocomplete"> -->
+                        <div class="level-item">
+                            <div class="control">
+                                <label class="label is-medium">From</label>
+                                <input class="input" id="fromCurrency" type="text" name="currency"
+                                    placeholder="Currency">
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="control">
+                                <label class="label is-medium">To</label>
+                                <input class="input" id="toCurrency" type="text" name="currency" placeholder="Currency">
+                            </div>
+                        </div>
+                        <div class="level-item control">
+                            <button class="button is-primary">Submit</button>
+                        </div>
+                        <!-- </form> -->
+                    </div>
                 </div>
-
                 <!-- Right Column (One Quarter) -->
                 <div class="column is-one-quarter">
                     <!-- Your right content goes here -->
                     Search history
 
-                </div>
-            </div>
-
-            <!-- Bottom Half -->
-            <div class="columns">
-                <!-- Datepicker Calendar -->
-                <div class="column is-half">
-                    <div class="field">
-                        <label class="label">Select a Date</label>
-                        <div class="control">
-                            <input id="datepicker" class="input" type="text" placeholder="Select a date">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Horizontally Scrollable Boxes -->
-            <div class="columns">
-                <div class="column is-half">
-                    <div class="scrollable-container">
-                        <div class="scrollable-boxes">
-                            <!-- Next and previous buttons -->
-                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-                            <!-- Image text -->
-                            <div class="caption-container">
-                                <p id="caption"></p>
-                            </div>
-                            <div class="columns">
-                                <div class="column">
-                                    <p>01/10/2023</p>
-                                </div>
-                                <div class="column">
-                                    <p>01/10/2023</p>
-                                </div>
-                                <div class="column">
-                                    <p>01/10/2023</p>
-                                </div>
-                                <div class="column">
-                                    <p>01/10/2023</p>
-                                </div>
-                                <div class="column">
-                                    <p>01/10/2023</p>
-                                </div>
-                                <div class="column">
-                                    <p>01/10/2023</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
