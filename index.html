@@ -24,14 +24,33 @@
 
     <!-- Main Section -->
     <section class="section">
-        <div class="container">
+        <div class="container is-fluid">
             <div class="columns">
                 <!-- Left Column (Three Quarters) -->
                 <div class="column is-three-quarters">
                     <!-- Your left content goes here -->
-                    Auto complete currency
+                    <div class = "level field">
+                    Currency conversion rate:
+                    <!-- <form autocomplete="off"> -->
+                        <!-- <div class="field autocomplete"> -->
+                            <div class = "level-item">
+                                <div class="control">                  
+                                <label class="label is-medium">From</label>
+                                <input class="input" id="fromCurrency" type="text" name="currency" placeholder="Currency">
+                                </div>  
+                            </div>
+                            <div class = "level-item">
+                                <div class="control">
+                                <label class="label is-medium">To</label>
+                                <input class="input" id="toCurrency" type="text" name="currency" placeholder="Currency">
+                                </div>
+                            </div>                        
+                        <div class = "level-item control">
+                            <button class="button is-primary">Submit</button>
+                        </div>
+                      <!-- </form> -->
                 </div>
-
+            </div>
                 <!-- Right Column (One Quarter) -->
                 <div class="column is-one-quarter">
                     <!-- Your right content goes here -->
