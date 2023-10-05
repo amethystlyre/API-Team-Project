@@ -25,16 +25,14 @@
 
     <!-- Main Section -->
     <section class="section m-1 p-2">
-        <div class="container">
+       
             <div class="columns">
-                <!-- Left Column (Three Quarters) -->
-                <div class="column is-three-quarters">
-                    <!-- Your left content goes here -->
-                    <div class="level field">
-                        Currency conversion rate:
-                        <!-- <form autocomplete="off"> -->
-                        
-                        <div class="level-item">
+                <!-- Left Column -->
+                <div class="column is-four-fifths">
+                    <!-- Currency Conversion input fields -->
+                    <form class="field is-flex is-flex-direction-row is-align-items-flex-end" id="conversion-form">
+                        <p class="m-1">Currency conversion rate:</p>
+                        <div class="m-1">
                             <div class="control">
                                 <label class="label is-medium">From</label>
                                 <div class="field autocomplete">
@@ -43,26 +41,29 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="level-item">
+                        <div class="m-1 is-flex-shrink-1">
                             <div class="control">
                                 <label class="label is-medium">To</label>
                                 <input class="input" id="toCurrency" type="text" name="currency" placeholder="Currency">
                             </div>
                         </div>
-                        <div class="level-item control">
-                            <button class="button is-primary">Submit</button>
+                        <div class="m-1 control">
+                            <input type="submit" class="button is-primary">
                         </div>
-                        <!-- </form> -->
-                    </div>
+                        <!-- Conversion rate result -->
+                        <div class="m-1"> Current Rates:
+                        <p id="currentExRate"></p>    
+                        </div>                 
+                    </form>
                 </div>
-                <!-- Right Column (One Quarter) -->
-                <div class="column is-one-quarter">
+                <!-- Right Column -->
+                <div class="column is-one-fifth">
                     <!-- Your right content goes here -->
                     Search history
 
                 </div>
             </div>
-        </div>
+        
     </section>
 
     <!-- Footer -->
