@@ -25,3 +25,28 @@ function addToHistory(fromCurrency, toCurrency, amount, result) {
 }
 
 
+// Function to save a string to local storage
+function saveToLocalStorage(data) {
+    // Retrieve existing history data from local storage
+    const existingHistory = JSON.parse(localStorage.getItem('conversionHistory')) || [];
+    // Add the new data to the existing history array
+    existingHistory.push(data);
+    // Save the updated history array to local storage
+    localStorage.setItem('conversionHistory', JSON.stringify(existingHistory));
+}
+
+// ...
+
+// Function to load conversion history from local storage
+function loadConversionHistoryFromLocalStorage() {
+    const historyData = JSON.parse(localStorage.getItem('conversionHistory')) || [];
+    historyData.forEach(function (historyItemString) {
+        addToHistoryFromLocalStorage(historyItemString);
+    });
+}
+
+// Load conversion history from local storage when the page loads
+loadConversionHistoryFromLocalStorage();
+
+// ...
+
