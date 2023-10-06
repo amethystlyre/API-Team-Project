@@ -25,7 +25,19 @@
 
     <!-- Main Section -->
     <section class="section m-1 p-2">
-
+        <div  class="columns">
+            <div class="column is-half mx-auto">
+        <article class="message is-danger is-hidden">
+            <div class="message-header p-2">
+              <p>Warning</p>
+              <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body p-2">
+              Alert text
+            </div>
+          </article>
+        </div>
+        </div>
         <div class="columns">
             <!-- Left Column -->
             <div class="column is-four-fifths">
@@ -57,10 +69,11 @@
                 </div>
                 <div class="columns mx-auto">
                     <!-- Conversion rate result -->
-                    <div class="m-2"> Current Rates: <p id="current-exchange-rate"></p>
+                    <div class="m-2"> Current Rates: <p id="current-exchange-rate"></p><img src="assets/images/emoji.png" id="success_emoji"/>
                     </div>
 
                 </div>
+
             </div>
 
             <!-- Right Column -->

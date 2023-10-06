@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     getCurrency();
     conversionForm.on("submit", handleFormSubmission);
-    flipContainer.on("click",handleRateSwap);
+    flipContainer.on("click", handleRateSwap);
 
 
     async function getCurrency() {
@@ -67,22 +67,42 @@ $(document).ready(function () {
             return true;
         }
         else {
-            //TODO: convert to modal
-            alert("Currency doesn't exist, choose from dropdown list.");
+            renderAlert("Currency doesn't exist, please choose from dropdown list.");
             return false;
         }
     };
 
-    //getConversionRate();
-    async function getConversionRate(url) {
-        //const url = "https://currency-conversion-and-exchange-rates.p.rapidapi.com/latest?from=USD&to=JPY";
 
+    function renderAlert(message) {
+        let alertMessage = $("article.message");
+        let alertbody = $(".message-body");
+        alertbody.text(message);
+        alertMessage.toggleClass("is-hidden");
+        let messageDismiss = $("button.delete");
+
+        messageDismiss.on("click", function () {
+            $("article.message").addClass("is-hidden");
+        });
+
+
+    }
+
+
+
+    async function getConversionRate(url) {
         try {
             const response = await fetch(url);
             const result = await response.json();
             //console.log(result["Realtime Currency Exchange Rate"]["5. Exchange Rate"]);
-            currentExRate = result["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
-            renderExRateResult(currentExRate);
+            if (result.hasOwnProperty("Realtime Currency Exchange Rate")) {
+                currentExRate = result["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+
+                renderExRateResult(currentExRate);
+            }
+            else {
+                console.log("API error:" + result["Error Message"]);
+                renderAlert("Exchange rate information is currently unavailable, please try again later.");
+            }
         } catch (error) {
             console.error(error);
         }
@@ -92,9 +112,6 @@ $(document).ready(function () {
 
 
     function renderAutoComp(SymbolList) {
-        //let autoPopList = SymbolList.map((element) => `${element.name}: ${element.code}`) ;
-
-
         currencyName = Object.values(SymbolList);
         console.log(currencyName);
 
@@ -122,10 +139,11 @@ $(document).ready(function () {
         formattedRate = parseFloat(rate, 10).toString();
         let exRateDisplay = $("#current-exchange-rate");
         exRateDisplay.text(`1${fromSymbol} = ${formattedRate} ${toSymbol}`);
+        $("#success_emoji").css("visibility","visible");
 
     }
 
-    function handleRateSwap(){
+    function handleRateSwap() {
         flipContainer.toggleClass("is-flipped");
         let base = fromCurrency.val();
         let target = toCurrency.val();

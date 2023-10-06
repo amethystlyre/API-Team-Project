@@ -3,6 +3,14 @@
     font-weight: 700;
 }
 
+header h1:before {
+    display: inline;
+    content: url("../images/exchange_logo_small.png");
+    margin:5px
+}
+
+
+
 #current-exchange-rate{
     display: inline;
 }
@@ -21,10 +29,6 @@
     position: relative;
     width: 100%;
     height: 100%;
-    /* cursor: pointer;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d; */
   }
 
 #flip-rate-container.is-flipped {
@@ -32,4 +36,19 @@
     /* transform: translateX(-100%) rotateY(-180deg); */
 }
 
+article .message-header{
+    font-size: 1.5em;
+}
   
+article .message-body{
+    font-size: 1em;
+}
+
+img{
+    display: inline;
+    height: auto;
+    max-width: 50px;
+    padding: 0px 5px;
+    margin: 0px 5px;
+    visibility: hidden;
+}
