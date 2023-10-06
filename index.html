@@ -29,10 +29,11 @@
         <div class="columns">
             <!-- Left Column -->
             <div class="column is-four-fifths">
+                <div class="columns mx-auto">
                 <!-- Currency Conversion input fields -->
                 <form class="field is-flex is-flex-direction-row is-align-items-flex-end" id="conversion-form">
-                    <p class="m-1">Currency conversion rate:</p>
-                    <div class="m-1">
+                    <p class="m-2">Currency conversion rate:</p>
+                    <div class="m-2">
                         <div class="control">
                             <label class="label is-medium">From</label>
                             <div class="field autocomplete">
@@ -41,23 +42,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="m-1 is-flex-shrink-1">
+                    <div class ="is-align-self-center p-2 m-2" id = "flip-rate-container"><i class="fa-solid fa-arrow-right-arrow-left fa-xl" id = "flip-rate-inner"></i></div>
+                    <div class="m-2 is-flex-shrink-1">
                         <div class="control">
                             <label class="label is-medium">To</label>
                             <input class="input" id="toCurrency" type="text" name="currency" placeholder="Currency">
                         </div>
                     </div>
-                    <div class="m-1 control">
+                    <div class="m-2 control">
                         <input type="submit" class="button is-primary">
                     </div>
-                    <!-- Conversion rate result -->
-                    <div class="m-1"> Current Rates:
-                        <p id="currentExRate"></p>
-                    </div>
-
 
                 </form>
+                </div>
+                <div class="columns mx-auto">
+                    <!-- Conversion rate result -->
+                    <div class="m-2"> Current Rates: <p id="current-exchange-rate"></p>
+                    </div>
+
+                </div>
             </div>
+
             <!-- Right Column -->
             <div class="column is-one-fifth">
                 <!-- Your right content goes here -->
@@ -91,6 +96,9 @@
 
     <!-- Day.js -->
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
+
+    <!-- Font Awesome.js -->
+    <script src="https://kit.fontawesome.com/e2513485d8.js" crossorigin="anonymous"></script>
 
     <!-- Custom JavaScript -->
     <script src="assets/script/script.js"></script> <!-- Link to your custom JavaScript file -->

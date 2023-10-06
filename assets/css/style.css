@@ -3,6 +3,33 @@
     font-weight: 700;
 }
 
-form p{
-    max-width: 200px ;
+#current-exchange-rate{
+    display: inline;
 }
+
+#flip-rate-container {
+    background-color: transparent;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+#flip-rate-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* cursor: pointer;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d; */
+  }
+
+#flip-rate-container.is-flipped {
+    transform: rotateY(180deg);
+    /* transform: translateX(-100%) rotateY(-180deg); */
+}
+
+  
