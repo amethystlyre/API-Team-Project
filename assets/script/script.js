@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //intialize global variables and DOM elements
+  //intialize global variables and DOM elements
   var curSymbolResponse;
   var curSymbolResult;
   var currencyList;
@@ -18,31 +18,31 @@ $(document).ready(function () {
   var amountTo = $('#toAmount');
 
 
-//API keys for exchange rates
- const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
- //const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";//backup Symbols API
+  //API keys for exchange rates
+  const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
+  //const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";//backup Symbols API
 
-//Populate fields with acceptable currency names and lsten for user actions
+  //Populate fields with acceptable currency names and lsten for user actions
   getCurrency();
   conversionForm.on("submit", handleFormSubmission);
   flipRateContainer.on("click", handleRateSwap);
   flipAmountContainer.on("click", handleAmountSwap);
   convertContainer.on("submit", calculateCurrency);
 
-//function for retrieving all available currencies
+  //function for retrieving all available currencies
   async function getCurrency() {
     //const url = `http://api.exchangeratesapi.io/v1/symbols?access_key=${EXCHANGERATE_APIKEY}`;//backup Symbols API
     const url = 'https://currency-conversion-and-exchange-rates.p.rapidapi.com/symbols';
     const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '393a201c07msh989553904cb68afp196132jsnc900806e55f7',
-            'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com'
-        }
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '393a201c07msh989553904cb68afp196132jsnc900806e55f7',
+        'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com'
+      }
     };
 
     try {
-      curSymbolResponse = await fetch(url,options);
+      curSymbolResponse = await fetch(url, options);
       curSymbolResult = await curSymbolResponse.json();
       //console.log(curSymbolResult);
       if (curSymbolResult.hasOwnProperty("symbols") && curSymbolResult.symbols.length != 0) {
@@ -56,7 +56,7 @@ $(document).ready(function () {
   }
 
 
-//Handle currency conversion form submission with user input
+  //Handle currency conversion form submission with user input
   function handleFormSubmission(event) {
     event.preventDefault();
 
@@ -69,7 +69,7 @@ $(document).ready(function () {
 
   }
 
-//check if user input exist and is valid
+  //check if user input exist and is valid
   function checkUserInput() {
     //console.log(fromCurrency.val());
     //console.log(toCurrency.val());
@@ -88,7 +88,7 @@ $(document).ready(function () {
     }
   };
 
-//Render warning message for unexpected user error or API error
+  //Render warning message for unexpected user error or API error
   function renderAlert(message) {
     let alertMessage = $("article.message");
     let alertbody = $(".message-body");
@@ -101,7 +101,7 @@ $(document).ready(function () {
     });
   }
 
-//Fetch currency conversion rate from API
+  //Fetch currency conversion rate from API
   async function getConversionRate(url) {
     try {
       const response = await fetch(url);
@@ -121,7 +121,7 @@ $(document).ready(function () {
     }
   }
 
-//Render auto-populate list for From and To currency lists
+  //Render auto-populate list for From and To currency lists
   function renderAutoComp(SymbolList) {
     currencyName = Object.values(SymbolList);
     //console.log(currencyName);
@@ -140,13 +140,13 @@ $(document).ready(function () {
 
   }
 
-//Helper function for checking the currency chosen is available in list
+  //Helper function for finding and returning the currency symbol
   function getSymbolByName(listOfCurSymbols, curName) {
     return Object.keys(listOfCurSymbols).find(key =>
       listOfCurSymbols[key] === curName);
   }
 
-// Render exchange rate results
+  // Render exchange rate results
   function renderExRateResult(rate) {
     let formattedRate = parseFloat(rate, 10).toString();
     let exRateDisplay = $("#current-exchange-rate");
@@ -154,7 +154,7 @@ $(document).ready(function () {
     $("#success_emoji").css("visibility", "visible");
   }
 
-// Swap user rates and animate icon upon click of two-way arrow
+  // Swap user rates and animate icon upon click of two-way arrow
   function handleRateSwap() {
     flipRateContainer.toggleClass("is-flipped");
     let baseRate = fromCurrency.val();
@@ -164,7 +164,7 @@ $(document).ready(function () {
   }
 
 
-  //
+  //Swap user entered amounts and animate icon upon click of two-way arrow
   function handleAmountSwap() {
     flipAmountContainer.toggleClass("is-flipped");
     let baseAmount = amountFrom.val();
@@ -173,78 +173,79 @@ $(document).ready(function () {
     amountTo.val(baseAmount);
   }
 
-  // 
+  //Convert a user given amount based on the exchanged rate result
   function calculateCurrency(rate) {
     rate.preventDefault();
     var amount = amountFrom.val();
-    var convertedAmount = amount * parseFloat(currentExRate, 10);
+    var convertedAmount = Math.round(amount * parseFloat(currentExRate, 10));
     amountTo.val(convertedAmount);
+    $(".custom-hide").css("display", "flex");
   }
 
- 
-   // Function to add a conversion to the search history
-function addToSearchHistory(fromCurrency, toCurrency) {
+
+  // Function to add a conversion to the search history
+  function addToSearchHistory(fromCurrency, toCurrency) {
     const historyItem = { fromCurrency, toCurrency };
     const historyItemString = JSON.stringify(historyItem);
-  
+
     // Check if the item already exists in the history
     const existingItems = $("#history-list button").toArray();
     const itemExists = existingItems.some(function (item) {
       return item.textContent === `${fromCurrency} to ${toCurrency}`;
     });
-  
+
     if (!itemExists) {
       // Item does not exist, add it to the history
       saveToLocalStorage(historyItemString);
-  
-      const button = $("<button class='search-history-button'></button>");
+
+      const button = $("<button class='button search-history-button is-link'></button>");
       button.text(`${fromCurrency} to ${toCurrency}`); // Display the searched currencies
-  
+
       // Append the history item to the history list
       $("#history-list").prepend(button);
-  
+
       button.on("click", function () {
         const { fromCurrency, toCurrency } = historyItem;
         $("#fromCurrency").val(fromCurrency);
         $("#toCurrency").val(toCurrency);
-  
+
         // Trigger the form submission to perform the conversion
         conversionForm.trigger("submit");
-  
+
         // Move the clicked item to the top of the list
         button.prependTo("#history-list");
       });
     }
   }
-  
+
   // Function to save a string to local storage
   function saveToLocalStorage(data) {
     const existingHistory = JSON.parse(localStorage.getItem("conversionHistory")) || [];
     existingHistory.push(data);
     localStorage.setItem("conversionHistory", JSON.stringify(existingHistory));
   }
-  
+
   // Function to load search history from local storage
   function loadSearchHistoryFromLocalStorage() {
     const historyData = JSON.parse(localStorage.getItem("conversionHistory")) || [];
     historyData.forEach(function (historyItemString) {
       addToSearchHistoryFromLocalStorage(historyItemString);
     });
-  
+
     // Show the search history by default
     $("#history-list").show();
   }
-  
+
   // Load search history from local storage and show it by default when the page loads
   loadSearchHistoryFromLocalStorage();
-  
 
-  });
+
+});
 
 ;
 
-var myMap = function(){
-  
+var myMap = function () {
+
   // Google Map to show nearby Banks
   var mapCenter = { lat: 0, lng: 0 };
 
@@ -300,9 +301,9 @@ var myMap = function(){
               <a href="https://www.google.com/maps/search/?q=${encodeURIComponent(place.name)}" target="_blank">View on Google Maps</a>
           </div>
       `
-  });
-  marker.addListener('click', function () {
+    });
+    marker.addListener('click', function () {
       infowindow.open(map, marker);
-  });
+    });
   }
 }
