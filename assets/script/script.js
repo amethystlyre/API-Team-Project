@@ -29,7 +29,7 @@ $(document).ready(function () {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '7519d9d81cmshbaca6aa03ea18d8p158311jsnff0e714a3ff8',
+            'X-RapidAPI-Key': '393a201c07msh989553904cb68afp196132jsnc900806e55f7',
             'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com'
         }
     };
@@ -57,6 +57,7 @@ $(document).ready(function () {
       let url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${fromSymbol}&to_currency=${toSymbol}&apikey=${ALPHAVANTAGE_APIKEY}`;
       //console.log(url);
       getConversionRate(url);
+      addToSearchHistory(fromCurrency.val(), toCurrency.val());
     };
 
   }
@@ -156,24 +157,28 @@ $(document).ready(function () {
   }
 
 
-  // Function to add a conversion to the search history
-  function addToHistory(fromCurrency, toCurrency, amount, result) {
-    const historyItem = { fromCurrency, toCurrency, amount, result };
+ 
+   // Function to add a conversion to the search history
+   function addToSearchHistory(fromCurrency, toCurrency) {
+    const historyItem = { fromCurrency, toCurrency };
     const historyItemString = JSON.stringify(historyItem);
     saveToLocalStorage(historyItemString);
-
+  
     const listItem = $("<li>");
-    listItem.html(`<a href="#" data-history="${historyItemString}">${fromCurrency} to ${toCurrency}: ${amount} = ${result}</a>`);
-    $("#history-list").append(listItem);
+    listItem.text(`${fromCurrency} to ${toCurrency}`); // Display the searched currencies
+  
+    // Append the history item to the history list
+    $("#history-list").prepend(listItem);
+  
 
     listItem.on("click", function (e) {
       e.preventDefault();
       const historyItemString = $(this).find("a").data("history");
-      const { fromCurrency, toCurrency, amount, result } = JSON.parse(historyItemString);
-      $("#fromCurrencySelect").val(fromCurrency);
-      $("#toCurrencySelect").val(toCurrency);
-      $("#amountInput").val(amount);
-      $("#resultInput").val(result);
+      const { fromCurrency, toCurrency } = JSON.parse(historyItemString);
+
+      // Optionally, you can update the form fields with the selected history item
+      fromCurrency.val(fromCurrency);
+      toCurrency.val(toCurrency);
     });
   }
 
@@ -184,23 +189,23 @@ $(document).ready(function () {
     localStorage.setItem("conversionHistory", JSON.stringify(existingHistory));
   }
 
-  // Function to load conversion history from local storage
-  function loadConversionHistoryFromLocalStorage() {
+  // Function to load search history from local storage
+  function loadSearchHistoryFromLocalStorage() {
     const historyData = JSON.parse(localStorage.getItem("conversionHistory")) || [];
     historyData.forEach(function (historyItemString) {
-      addToHistoryFromLocalStorage(historyItemString);
+      addToSearchHistoryFromLocalStorage(historyItemString);
     });
+
+    // Show the search history by default
+    $("#history-list").show();
   }
 
-  // Load conversion history from local storage when the page loads
-  loadConversionHistoryFromLocalStorage();
+  // Load search history from local storage and show it by default when the page loads
+  loadSearchHistoryFromLocalStorage();
 
-  // Show the search history when the button is clicked
-  $("#showHistoryButton").on("click", function () {
-    $("#history-list").toggle(); // Toggle the visibility of the history list
   });
 
-});
+;
 
 var myMap = function(){
   
