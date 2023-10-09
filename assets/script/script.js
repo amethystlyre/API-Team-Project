@@ -183,49 +183,61 @@ $(document).ready(function () {
 
  
    // Function to add a conversion to the search history
-   function addToSearchHistory(fromCurrency, toCurrency) {
+function addToSearchHistory(fromCurrency, toCurrency) {
     const historyItem = { fromCurrency, toCurrency };
     const historyItemString = JSON.stringify(historyItem);
-    saveToLocalStorage(historyItemString);
   
-    const listItem = $("<li>");
-    listItem.text(`${fromCurrency} to ${toCurrency}`); // Display the searched currencies
-  
-    // Append the history item to the history list
-    $("#history-list").prepend(listItem);
-  
-
-    listItem.on("click", function (e) {
-      e.preventDefault();
-      const historyItemString = $(this).find("a").data("history");
-      const { fromCurrency, toCurrency } = JSON.parse(historyItemString);
-
-      // Optionally, you can update the form fields with the selected history item
-      fromCurrency.val(fromCurrency);
-      toCurrency.val(toCurrency);
+    // Check if the item already exists in the history
+    const existingItems = $("#history-list button").toArray();
+    const itemExists = existingItems.some(function (item) {
+      return item.textContent === `${fromCurrency} to ${toCurrency}`;
     });
+  
+    if (!itemExists) {
+      // Item does not exist, add it to the history
+      saveToLocalStorage(historyItemString);
+  
+      const button = $("<button class='search-history-button'></button>");
+      button.text(`${fromCurrency} to ${toCurrency}`); // Display the searched currencies
+  
+      // Append the history item to the history list
+      $("#history-list").prepend(button);
+  
+      button.on("click", function () {
+        const { fromCurrency, toCurrency } = historyItem;
+        $("#fromCurrency").val(fromCurrency);
+        $("#toCurrency").val(toCurrency);
+  
+        // Trigger the form submission to perform the conversion
+        conversionForm.trigger("submit");
+  
+        // Move the clicked item to the top of the list
+        button.prependTo("#history-list");
+      });
+    }
   }
-
+  
   // Function to save a string to local storage
   function saveToLocalStorage(data) {
     const existingHistory = JSON.parse(localStorage.getItem("conversionHistory")) || [];
     existingHistory.push(data);
     localStorage.setItem("conversionHistory", JSON.stringify(existingHistory));
   }
-
+  
   // Function to load search history from local storage
   function loadSearchHistoryFromLocalStorage() {
     const historyData = JSON.parse(localStorage.getItem("conversionHistory")) || [];
     historyData.forEach(function (historyItemString) {
       addToSearchHistoryFromLocalStorage(historyItemString);
     });
-
+  
     // Show the search history by default
     $("#history-list").show();
   }
-
+  
   // Load search history from local storage and show it by default when the page loads
   loadSearchHistoryFromLocalStorage();
+  
 
   });
 
