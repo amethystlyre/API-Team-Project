@@ -12,7 +12,6 @@ $(document).ready(function () {
   var toSymbol;
   var conversionForm = $("#conversion-form");
   var flipContainer = $("#flip-rate-container");
-  var convertAmountForm = $("#convert-amount-form");
 
 //API keys for exchange rates
  const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
@@ -156,16 +155,6 @@ $(document).ready(function () {
     fromCurrency.val(target);
     toCurrency.val(base);
   }
-
-//
-
-
-
-
-}
-
-
-
  
    // Function to add a conversion to the search history
    function addToSearchHistory(fromCurrency, toCurrency) {
