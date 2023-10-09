@@ -63,7 +63,9 @@ article .message-body{
     display:none;
 }
 
-
+.search-history-button{
+    margin: 5px 0px;
+}
 
 #map{
     height: 70vh;
