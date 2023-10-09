@@ -54,7 +54,7 @@ article .message-body{
 }
 
 .custom-hide {
-    visibility: collapse;
+    display:none;
 }
 
 

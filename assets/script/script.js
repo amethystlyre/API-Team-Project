@@ -155,6 +155,11 @@ $(document).ready(function () {
     fromCurrency.val(target);
     toCurrency.val(base);
   }
+
+  
+
+
+
  
    // Function to add a conversion to the search history
    function addToSearchHistory(fromCurrency, toCurrency) {
