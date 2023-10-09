@@ -11,10 +11,12 @@ $(document).ready(function () {
   var fromSymbol;
   var toSymbol;
   var conversionForm = $("#conversion-form");
-  var flipContainer = $("#flip-rate-container");
+  var flipRateContainer = $("#flip-rate-container");
+  var flipAmountContainer = $("#flip-amount-container");
   var convertContainer = $('#convert-amount-form');
   var amountFrom = $('#fromAmount');
   var amountTo = $('#toAmount');
+
 
 //API keys for exchange rates
  const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
@@ -23,7 +25,8 @@ $(document).ready(function () {
 //Populate fields with acceptable currency names and lsten for user actions
   getCurrency();
   conversionForm.on("submit", handleFormSubmission);
-  flipContainer.on("click", handleRateSwap);
+  flipRateContainer.on("click", handleRateSwap);
+  flipAmountContainer.on("click", handleAmountSwap);
   convertContainer.on("submit", calculateCurrency);
 
 //function for retrieving all available currencies
@@ -145,7 +148,7 @@ $(document).ready(function () {
 
 // Render exchange rate results
   function renderExRateResult(rate) {
-    formattedRate = parseFloat(rate, 10).toString();
+    let formattedRate = parseFloat(rate, 10).toString();
     let exRateDisplay = $("#current-exchange-rate");
     exRateDisplay.text(`1${fromSymbol} = ${formattedRate} ${toSymbol}`);
     $("#success_emoji").css("visibility", "visible");
@@ -153,17 +156,28 @@ $(document).ready(function () {
 
 // Swap user rates and animate icon upon click of two-way arrow
   function handleRateSwap() {
-    flipContainer.toggleClass("is-flipped");
-    let base = fromCurrency.val();
-    let target = toCurrency.val();
-    fromCurrency.val(target);
-    toCurrency.val(base);
+    flipRateContainer.toggleClass("is-flipped");
+    let baseRate = fromCurrency.val();
+    let targetRate = toCurrency.val();
+    fromCurrency.val(targetRate);
+    toCurrency.val(baseRate);
   }
 
+
+  //
+  function handleAmountSwap() {
+    flipAmountContainer.toggleClass("is-flipped");
+    let baseAmount = amountFrom.val();
+    let targetAmount = amountTo.val();
+    amountFrom.val(targetAmount);
+    amountTo.val(baseAmount);
+  }
+
+  // 
   function calculateCurrency(rate) {
     rate.preventDefault();
     var amount = amountFrom.val();
-    var convertedAmount = amount * formattedRate;
+    var convertedAmount = amount * parseFloat(currentExRate, 10);
     amountTo.val(convertedAmount);
   }
 
