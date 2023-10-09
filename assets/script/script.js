@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 //API keys for exchange rates
  const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
- //const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";
+ //const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";//backup Symbols API
 
 //Populate fields with acceptable currency names and lsten for user actions
   getCurrency();
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 //function for retrieving all available currencies
   async function getCurrency() {
-    //const url = `http://api.exchangeratesapi.io/v1/symbols?access_key=${EXCHANGERATE_APIKEY}`;
+    //const url = `http://api.exchangeratesapi.io/v1/symbols?access_key=${EXCHANGERATE_APIKEY}`;//backup Symbols API
     const url = 'https://currency-conversion-and-exchange-rates.p.rapidapi.com/symbols';
     const options = {
         method: 'GET',
