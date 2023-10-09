@@ -12,6 +12,9 @@ $(document).ready(function () {
   var toSymbol;
   var conversionForm = $("#conversion-form");
   var flipContainer = $("#flip-rate-container");
+  var convertContainer = $('#convert-amount-form');
+  var amountFrom = $('#fromAmount');
+  var amountTo = $('#toAmount');
 
 //API keys for exchange rates
  const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
@@ -21,6 +24,7 @@ $(document).ready(function () {
   getCurrency();
   conversionForm.on("submit", handleFormSubmission);
   flipContainer.on("click", handleRateSwap);
+  convertContainer.on("submit", calculateCurrency);
 
 //function for retrieving all available currencies
   async function getCurrency() {
@@ -156,9 +160,12 @@ $(document).ready(function () {
     toCurrency.val(base);
   }
 
-  
-
-
+  function calculateCurrency(rate) {
+    rate.preventDefault();
+    var amount = amountFrom.val();
+    var convertedAmount = amount * formattedRate;
+    amountTo.val(convertedAmount);
+  }
 
  
    // Function to add a conversion to the search history
