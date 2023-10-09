@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //intialize global variables and DOM elements
   var curSymbolResponse;
   var curSymbolResult;
   var currencyList;
@@ -12,16 +13,16 @@ $(document).ready(function () {
   var conversionForm = $("#conversion-form");
   var flipContainer = $("#flip-rate-container");
 
+//API keys for exchange rates
+ const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
+ const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";
 
-  // const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
-  // const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";
-
-
+//Populate fields with acceptable currency names and lsten for user actions
   getCurrency();
   conversionForm.on("submit", handleFormSubmission);
   flipContainer.on("click", handleRateSwap);
 
-
+//function for retrieving all available currencies
   async function getCurrency() {
     const url = `http://api.exchangeratesapi.io/v1/symbols?access_key=${EXCHANGERATE_APIKEY}`;
 
@@ -39,7 +40,7 @@ $(document).ready(function () {
   }
 
 
-
+//Handle currency conversion form submission with user input
   function handleFormSubmission(event) {
     event.preventDefault();
 
@@ -51,14 +52,12 @@ $(document).ready(function () {
 
   }
 
-
+//check if user input exist and is valid
   function checkUserInput() {
     //console.log(fromCurrency.val());
     //console.log(toCurrency.val());
     fromSymbol = getSymbolByName(currencyList, fromCurrency.val());
     toSymbol = getSymbolByName(currencyList, toCurrency.val());
-    //console.log("from:"+fromSymbol);
-    //console.log("to:"+toSymbol);
 
 
     if (currencyName.includes(fromCurrency.val()) && currencyName.includes(toCurrency.val())) {
@@ -72,7 +71,7 @@ $(document).ready(function () {
     }
   };
 
-
+//Render warning message for unexpected user error or API error
   function renderAlert(message) {
     let alertMessage = $("article.message");
     let alertbody = $(".message-body");
@@ -83,12 +82,9 @@ $(document).ready(function () {
     messageDismiss.on("click", function () {
       $("article.message").addClass("is-hidden");
     });
-
-
   }
 
-
-
+//Fetch currency conversion rate from API
   async function getConversionRate(url) {
     try {
       const response = await fetch(url);
@@ -108,9 +104,7 @@ $(document).ready(function () {
     }
   }
 
-
-
-
+//Render auto-populate list for From and To currency lists
   function renderAutoComp(SymbolList) {
     currencyName = Object.values(SymbolList);
     console.log(currencyName);
@@ -129,27 +123,27 @@ $(document).ready(function () {
 
   }
 
-
+//Helper function for checking the currency chosen is available in list
   function getSymbolByName(listOfCurSymbols, curName) {
     return Object.keys(listOfCurSymbols).find(key =>
       listOfCurSymbols[key] === curName);
   }
 
+// Render exchange rate results
   function renderExRateResult(rate) {
     formattedRate = parseFloat(rate, 10).toString();
     let exRateDisplay = $("#current-exchange-rate");
     exRateDisplay.text(`1${fromSymbol} = ${formattedRate} ${toSymbol}`);
     $("#success_emoji").css("visibility", "visible");
-
   }
 
+// Swap user rates and animate icon upon click of two-way arrow
   function handleRateSwap() {
     flipContainer.toggleClass("is-flipped");
     let base = fromCurrency.val();
     let target = toCurrency.val();
     fromCurrency.val(target);
     toCurrency.val(base);
-
   }
 
 
