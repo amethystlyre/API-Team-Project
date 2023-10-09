@@ -53,6 +53,12 @@ article .message-body{
     visibility: hidden;
 }
 
+.custom-hide {
+    visibility: collapse;
+}
+
+
+
 #map{
     height: 70vh;
 }

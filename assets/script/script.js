@@ -12,6 +12,7 @@ $(document).ready(function () {
   var toSymbol;
   var conversionForm = $("#conversion-form");
   var flipContainer = $("#flip-rate-container");
+  var convertAmountForm = $("#convert-amount-form");
 
 //API keys for exchange rates
  const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
@@ -29,7 +30,7 @@ $(document).ready(function () {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '7519d9d81cmshbaca6aa03ea18d8p158311jsnff0e714a3ff8',
+            'X-RapidAPI-Key': '393a201c07msh989553904cb68afp196132jsnc900806e55f7',
             'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com'
         }
     };
@@ -154,6 +155,14 @@ $(document).ready(function () {
     fromCurrency.val(target);
     toCurrency.val(base);
   }
+
+//
+
+
+
+
+}
+
 
 
   // Function to add a conversion to the search history
