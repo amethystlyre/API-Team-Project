@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 //API keys for exchange rates
  const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
- const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";
+ //const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";
 
 //Populate fields with acceptable currency names and lsten for user actions
   getCurrency();
@@ -24,14 +24,23 @@ $(document).ready(function () {
 
 //function for retrieving all available currencies
   async function getCurrency() {
-    const url = `http://api.exchangeratesapi.io/v1/symbols?access_key=${EXCHANGERATE_APIKEY}`;
+    //const url = `http://api.exchangeratesapi.io/v1/symbols?access_key=${EXCHANGERATE_APIKEY}`;
+    const url = 'https://currency-conversion-and-exchange-rates.p.rapidapi.com/symbols';
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '7519d9d81cmshbaca6aa03ea18d8p158311jsnff0e714a3ff8',
+            'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com'
+        }
+    };
 
     try {
-      curSymbolResponse = await fetch(url);
+      curSymbolResponse = await fetch(url,options);
       curSymbolResult = await curSymbolResponse.json();
+      //console.log(curSymbolResult);
       if (curSymbolResult.hasOwnProperty("symbols") && curSymbolResult.symbols.length != 0) {
         currencyList = curSymbolResult.symbols;
-        console.log(currencyList);
+        //console.log(currencyList);
         renderAutoComp(currencyList);
       }
     } catch (error) {
@@ -107,7 +116,7 @@ $(document).ready(function () {
 //Render auto-populate list for From and To currency lists
   function renderAutoComp(SymbolList) {
     currencyName = Object.values(SymbolList);
-    console.log(currencyName);
+    //console.log(currencyName);
 
     fromCurrency.on("focus", $(function () {
       fromCurrency.autocomplete({
