@@ -65,6 +65,9 @@ article .message-body{
 
 .search-history-button{
     margin: 5px 0px;
+    padding: 10px 0px;
+    text-wrap: wrap;
+    height: fit-content;
 }
 
 #map{
