@@ -295,7 +295,7 @@ var myMap = function () {
       });
     });
   } else {
-    console.log("Geolocation is not supported by this browser.");
+    renderAlert("Geolocation is not supported by this browser.");
   }
 
   // Marker for each money exchange
