@@ -268,7 +268,7 @@ var myMap = function () {
       var request = {
         location: userLocation,
         radius: 10000,
-        type: 'bank'
+        keyword: 'money exchange'
       };
 
       // Searching nearby
