@@ -183,7 +183,27 @@ $(document).ready(function () {
   }
 
 
-  // Function to add a conversion to the search history
+  // Function to load the conversion history from local storage
+  function loadSearchHistoryFromLocalStorage() {
+    const historyData = JSON.parse(localStorage.getItem("conversionHistory")) || [];
+    // Reverse the historyData array to maintain the order
+    const reversedHistoryData = historyData.reverse();
+    const limitedHistoryData = reversedHistoryData.slice(0, 5); // Get the last 5 items
+
+    $("#history-list").empty(); // Clear the history list
+
+    limitedHistoryData.forEach(function (historyItemString) {
+      const historyItem = JSON.parse(historyItemString); // Parse the stored string into an object
+      addToSearchHistory(historyItem.fromCurrency, historyItem.toCurrency);
+    });
+
+    // Show the search history by default
+    $("#history-list").show();
+  }
+
+  // Load search history from local storage when the page loads
+  loadSearchHistoryFromLocalStorage();
+
   function addToSearchHistory(fromCurrency, toCurrency) {
     const historyItem = { fromCurrency, toCurrency };
     const historyItemString = JSON.stringify(historyItem);
@@ -214,30 +234,22 @@ $(document).ready(function () {
 
         // Move the clicked item to the top of the list
         button.prependTo("#history-list");
+
+        console.log("Saved to localStorage:", historyItemString);
       });
     }
   }
-
-  // Function to save a string to local storage
   function saveToLocalStorage(data) {
     const existingHistory = JSON.parse(localStorage.getItem("conversionHistory")) || [];
     existingHistory.push(data);
     localStorage.setItem("conversionHistory", JSON.stringify(existingHistory));
   }
 
-  // Function to load search history from local storage
-  function loadSearchHistoryFromLocalStorage() {
-    const historyData = JSON.parse(localStorage.getItem("conversionHistory")) || [];
-    historyData.forEach(function (historyItemString) {
-      addToSearchHistoryFromLocalStorage(historyItemString);
-    });
+  
 
-    // Show the search history by default
-    $("#history-list").show();
-  }
-
-  // Load search history from local storage and show it by default when the page loads
-  loadSearchHistoryFromLocalStorage();
+  
+  
+ 
 
 
 });
@@ -304,6 +316,8 @@ var myMap = function () {
     });
     marker.addListener('click', function () {
       infowindow.open(map, marker);
+
+       
     });
   }
 }
