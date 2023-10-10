@@ -100,3 +100,12 @@ article .message-body{
 #flip-rate-inner{
     margin-top: 50px;
 }
+
+.map-container {
+    margin:20px;
+}
+
+.title {
+    font-size:24px;
+    margin-bottom:10px;
+}
