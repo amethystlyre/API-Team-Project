@@ -1,6 +1,22 @@
+:root{
+    --accent : #003566;
+}
+
 *{
     font-size: 1.25rem;
     font-weight: 700;
+}
+
+#header{
+    background-color: var(--accent);
+}
+
+#conversion-submit{
+    background-color: var(--accent);
+}
+
+#convert-submit{
+    background-color: var(--accent);
 }
 
 header h1:before {
@@ -9,7 +25,14 @@ header h1:before {
     margin:5px
 }
 
+#current-rate-master-container{
+    justify-content: center;
+    margin: 30px;
+}
 
+#current-rate-container{
+    visibility: hidden;
+}
 
 #current-exchange-rate{
     display: inline;
@@ -72,4 +95,8 @@ article .message-body{
 
 #map{
     height: 70vh;
+}
+
+#flip-rate-inner{
+    margin-top: 50px;
 }
