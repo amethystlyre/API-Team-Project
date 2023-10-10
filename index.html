@@ -13,7 +13,7 @@
 <body>
 
     <!-- Header -->
-    <header class="hero is-primary">
+    <header class="hero is-primary" id="header">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
@@ -41,7 +41,7 @@
         <div class="columns">
             <!-- Left Column -->
             <div class="column is-three-quarters">
-                <div class="columns mx-auto">
+                <div class="columns mx-auto" id="conversion-container">
                     <!-- Currency Conversion input fields -->
                     <form class="field is-flex is-flex-direction-row is-align-items-flex-end" id="conversion-form">
                         <p class="m-2">Currency conversion rate:</p>
@@ -63,14 +63,14 @@
                             </div>
                         </div>
                         <div class="m-2 control">
-                            <input type="submit" class="button is-primary">
+                            <input type="submit" class="button is-primary" id="conversion-submit">
                         </div>
 
                     </form>
                 </div>
-                <div class="columns mx-auto">
+                <div class="columns mx-auto" id="current-rate-master-container">
                     <!-- Conversion rate result -->
-                    <div class="m-2"> Current Rates: <p id="current-exchange-rate"></p><img
+                    <div class="m-2" id="current-rate-container"> Current Rates: <p id="current-exchange-rate"></p><img
                             src="assets/images/emoji.png" id="success_emoji" />
                     </div>
 
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="m-2 control">
-                            <input type="submit" class="button is-primary" value="Convert">
+                            <input type="submit" class="button is-primary" id="convert-submit" value="Convert">
                         </div>
 
                     </form>
@@ -146,7 +146,7 @@
     <!-- Custom JavaScript -->
     <script src="assets/script/script.js"></script>
 
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAC6yZMcemlXDtWgBZCxtx1Pu0Ut1Fizg&libraries=places&callback=myMap"></script>
+    <!-- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAC6yZMcemlXDtWgBZCxtx1Pu0Ut1Fizg&libraries=places&callback=myMap"></script> -->
 
 </body>
 

@@ -152,6 +152,7 @@ $(document).ready(function () {
     let exRateDisplay = $("#current-exchange-rate");
     exRateDisplay.text(`1${fromSymbol} = ${formattedRate} ${toSymbol}`);
     $("#success_emoji").css("visibility", "visible");
+    $("#current-rate-container").css("visibility", "visible");
   }
 
   // Swap user rates and animate icon upon click of two-way arrow
@@ -239,22 +240,13 @@ $(document).ready(function () {
       });
     }
   }
+
   function saveToLocalStorage(data) {
     const existingHistory = JSON.parse(localStorage.getItem("conversionHistory")) || [];
     existingHistory.push(data);
     localStorage.setItem("conversionHistory", JSON.stringify(existingHistory));
   }
-
-  
-
-  
-  
- 
-
-
 });
-
-;
 
 var myMap = function () {
 
