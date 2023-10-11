@@ -13,7 +13,7 @@
 <body>
 
     <!-- Header -->
-    <header class="hero is-primary">
+    <header class="hero is-primary" id="header">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
@@ -40,10 +40,11 @@
         </div>
         <div class="columns">
             <!-- Left Column -->
-            <div class="column is-four-fifths">
-                <div class="columns mx-auto">
+            <div class="column is-three-quarters">
+                <div class="columns mx-auto" id="conversion-container">
                     <!-- Currency Conversion input fields -->
-                    <form class="field is-flex is-flex-direction-row is-align-items-flex-end" id="conversion-form">
+                    <form class="field is-flex is-flex-wrap-wrap is-flex-direction-row is-align-items-flex-end"
+                        id="conversion-form">
                         <p class="m-2">Currency conversion rate:</p>
                         <div class="m-2">
                             <div class="control">
@@ -63,39 +64,72 @@
                             </div>
                         </div>
                         <div class="m-2 control">
-                            <input type="submit" class="button is-primary">
+                            <input type="submit" class="button is-primary" id="conversion-submit">
                         </div>
 
                     </form>
                 </div>
-                <div class="columns mx-auto">
+                <div class="columns mx-auto" id="current-rate-master-container">
                     <!-- Conversion rate result -->
-                    <div class="m-2"> Current Rates: <p id="current-exchange-rate"></p><img
+                    <div class="m-2" id="current-rate-container"> Current Rates: <p id="current-exchange-rate"></p><img
                             src="assets/images/emoji.png" id="success_emoji" />
                     </div>
 
+                </div>
+                <div class="columns mx-auto">
+                    <!-- Currency amount input fields -->
+                    <form class="field is-flex is-flex-wrap-wrap is-flex-direction-row is-align-items-flex-end"
+                        id="convert-amount-form">
+                        <p class="m-2">Convert amount:</p>
+                        <div class="m-2">
+                            <div class="control">
+                                <label class="label is-medium">From</label>
+                                <div class="field autocomplete">
+                                    <input class="input" id="fromAmount" type="number" name="base-amount"
+                                        placeholder="$1000">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="is-align-self-center p-2 m-2 custom-hide" id="flip-amount-container"><i
+                                class="fa-solid fa-arrow-right-arrow-left fa-xl" id="flip-amount-inner"></i></div>
+                        <div class="m-2 is-flex-shrink-1 custom-hide">
+                            <div class="control">
+                                <label class="label is-medium">To</label>
+                                <input class="input" id="toAmount" type="number" name="target-amount" placeholder="$">
+                            </div>
+                        </div>
+                        <div class="m-2 control">
+                            <input type="submit" class="button is-primary" id="convert-submit" value="Convert">
+                        </div>
+
+                    </form>
                 </div>
 
             </div>
 
             <!-- Right Column -->
-            <div class="column is-one-fifth">
+            <div class="column is-one-quarter">
                 <!-- Search History -->
                 <div class="search-history">
                     <h2 class="subtitle">Search History</h2>
                     <ul id="history-list">
                         <!-- Search history will be displayed here -->
                     </ul>
-                    <!-- Button to Display Search History -->
-                    <button id="showHistoryButton" class="button is-primary">Display History</button>
+
+
                 </div>
             </div>
-
         </div>
-
+        </div>
+        </div>
+        <div class="columns mx-auto is-justify-content-center">
+            <div class="column is-half">
+                <h2 class="title">Nearby Currency Exchange Offices</h2>
+                <div id="map"></div>
+            </div>
+        </div>
     </section>
 
-    <div id="map"></div>
     <!-- Footer -->
     <footer class="footer">
         <div class="content has-text-centered">
@@ -119,7 +153,8 @@
     <!-- Custom JavaScript -->
     <script src="assets/script/script.js"></script>
 
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAC6yZMcemlXDtWgBZCxtx1Pu0Ut1Fizg&libraries=places&callback=myMap"></script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAC6yZMcemlXDtWgBZCxtx1Pu0Ut1Fizg&libraries=places&callback=myMap"></script>
 
 </body>
 

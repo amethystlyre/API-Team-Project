@@ -1,6 +1,22 @@
+:root{
+    --accent : #003566;
+}
+
 *{
     font-size: 1.25rem;
     font-weight: 700;
+}
+
+#header{
+    background-color: var(--accent);
+}
+
+#conversion-submit{
+    background-color: var(--accent);
+}
+
+#convert-submit{
+    background-color: var(--accent);
 }
 
 header h1:before {
@@ -9,13 +25,20 @@ header h1:before {
     margin:5px
 }
 
+#current-rate-master-container{
+    justify-content: center;
+    margin: 30px;
+}
 
+#current-rate-container{
+    visibility: hidden;
+}
 
 #current-exchange-rate{
     display: inline;
 }
 
-#flip-rate-container {
+#flip-rate-container #flip-amount-container{
     background-color: transparent;
     width: 45px;
     height: 45px;
@@ -25,7 +48,7 @@ header h1:before {
     transform-style: preserve-3d;
 }
 
-#flip-rate-inner {
+#flip-rate-inner #flip-amount-container {
     position: relative;
     width: 100%;
     height: 100%;
@@ -35,6 +58,12 @@ header h1:before {
     transform: rotateY(180deg);
     /* transform: translateX(-100%) rotateY(-180deg); */
 }
+
+#flip-amount-container.is-flipped {
+    transform: rotateY(180deg);
+    /* transform: translateX(-100%) rotateY(-180deg); */
+}
+
 
 article .message-header{
     font-size: 1.5em;
@@ -53,6 +82,17 @@ article .message-body{
     visibility: hidden;
 }
 
+.custom-hide {
+    display:none;
+}
+
+.search-history-button{
+    margin: 5px 0px;
+    padding: 10px 0px;
+    text-wrap: wrap;
+    height: fit-content;
+}
+
 #map{
     height: 70vh;
 }
@@ -60,3 +100,12 @@ article .message-body{
 div.column.is-three-quarters{
     height: 70vh;
    }
+
+#flip-rate-inner{
+    margin-top: 50px;
+}
+
+.title {
+    font-size:24px;
+    margin-bottom:10px;
+}
