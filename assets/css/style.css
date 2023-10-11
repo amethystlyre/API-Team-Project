@@ -101,11 +101,11 @@ article .message-body{
     margin-top: 50px;
 }
 
-.map-container {
-    margin:20px;
-}
-
 .title {
     font-size:24px;
     margin-bottom:10px;
 }
+
+div.column.is-three-quarters{
+    height: 70vh;
+   }

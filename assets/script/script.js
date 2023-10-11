@@ -21,6 +21,8 @@ $(document).ready(function () {
   //API keys for exchange rates
   const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
   //const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";//backup Symbols API
+  const XRAPID_APIKEY="393a201c07msh989553904cb68afp196132jsnc900806e55f7";
+  //Back up API Key in case we hit quota limit for the month: 38181d70c5msh81a24e2f7d16b84p190a40jsn29bf7d794117
 
   //Populate fields with acceptable currency names and lsten for user actions
   getCurrency();
@@ -36,7 +38,7 @@ $(document).ready(function () {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '393a201c07msh989553904cb68afp196132jsnc900806e55f7',
+        'X-RapidAPI-Key': `${XRAPID_APIKEY}`,
         'X-RapidAPI-Host': 'currency-conversion-and-exchange-rates.p.rapidapi.com'
       }
     };
