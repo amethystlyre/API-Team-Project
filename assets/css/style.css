@@ -97,6 +97,10 @@ article .message-body{
     height: 70vh;
 }
 
+div.column.is-three-quarters{
+    height: 70vh;
+   }
+
 #flip-rate-inner{
     margin-top: 50px;
 }

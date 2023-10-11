@@ -35,7 +35,7 @@ THEN I am able to view a map of nearby banks an where I can go to exchange foreg
 
 ## Installation
 
-* Open url link https://amethystlyre.github.io/API-Team-Project/ in above mention browsers.
+* Open url link https://amethystlyre.github.io/Currency-Exchange-project/ in above mention browsers.
 
 ## Credits
 N/A
