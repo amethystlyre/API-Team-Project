@@ -56,3 +56,7 @@ article .message-body{
 #map{
     height: 70vh;
 }
+
+div.column.is-three-quarters{
+    height: 70vh;
+   }
