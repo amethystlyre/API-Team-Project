@@ -1,4 +1,4 @@
-# API-Team-Project
+# Currency Exchange Project
 
 # Description
 A website where users can check the currency conversion rates and find nearby banks to exchange foreign money. Users can start typing the name of the country or the name of the currency in the "From" and "To" fields and then select one of the available currencies in the auto-populated drop down list before hitting Submit to get back currency rates.
