@@ -21,7 +21,7 @@ $(document).ready(function () {
   //API keys for exchange rates
   const ALPHAVANTAGE_APIKEY = "XE79THS7MSCL4AER";
   //const EXCHANGERATE_APIKEY = "e16414f0258ef99126086274fc299335";//backup Symbols API
-  const XRAPID_APIKEY="38181d70c5msh81a24e2f7d16b84p190a40jsn29bf7d794117";
+  const XRAPID_APIKEY = "38181d70c5msh81a24e2f7d16b84p190a40jsn29bf7d794117";
   //Back up API Key in case we hit quota limit for the month: 38181d70c5msh81a24e2f7d16b84p190a40jsn29bf7d794117
 
   //Populate fields with acceptable currency names and lsten for user actions
@@ -128,17 +128,17 @@ $(document).ready(function () {
     currencyName = Object.values(SymbolList);
     //console.log(currencyName);
 
-    fromCurrency.on("focus", $(function () {
+    fromCurrency.on("focus", function () {
       fromCurrency.autocomplete({
         source: currencyName
       });
-    }));
+    });
 
-    toCurrency.on("focus", $(function () {
+    toCurrency.on("focus", function () {
       toCurrency.autocomplete({
         source: currencyName
       });
-    }));
+    });
 
   }
 
@@ -283,7 +283,7 @@ var myMap = function () {
           for (let i = 0; i < results.length; i++) {
             var place = results[i];
             createMarker(place);
-            console.log(place)
+            //console.log(place)
           }
         }
       });
@@ -311,7 +311,7 @@ var myMap = function () {
     marker.addListener('click', function () {
       infowindow.open(map, marker);
 
-       
+
     });
   }
 }
